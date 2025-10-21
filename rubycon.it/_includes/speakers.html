@@ -1,5 +1,14 @@
+{% capture description_extra %}
+    <div class="mt-4">
+        <a href="/cfp.html" class="text-lg link underline underline-offset-4">
+            The Call For Papers is still open
+            <i class="fas fa-regular fa-arrow-up-right-from-square"></i>
+        </a>
+    </div>
+{% endcapture %}
+
 {% capture speakers_content %}
-  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {% for speaker in site.data.speakers %}
             <div class="my-card rounded-lg overflow-hidden shadow-md transition duration-300">
                 <div class="relative" data-aos="fade-zoom">
@@ -11,7 +20,10 @@
                     </div>
                 </div>
                 <div class="p-6" data-aos="fade-zoom">
-                    <p class="text-gray-600 mb-4">{{ speaker.description }}</p>
+                    {% for text in speaker.description %}
+                        <p class="text-gray-600 mb-4">{{ text }}</p>
+                    {% endfor %}
+
                     <div class="flex space-x-2">
                         {% for label in speaker.labels %}
                             <span class="bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full">{{ label }}</span>
@@ -26,6 +38,7 @@
 {% include section.html
     id="speakers"
     title="II. &nbsp;Featured speakers"
-    description="Learn from some of the brightest minds in the Ruby community from Gallia Cisalpina atque Transalpina. [Coming Soon]"
+    description="Learn from some of the brightest minds in the Ruby community from Gallia Cisalpina atque Transalpina."
+    description_extra=description_extra
     content=speakers_content
 %}
